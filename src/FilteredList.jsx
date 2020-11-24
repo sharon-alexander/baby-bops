@@ -2,7 +2,9 @@ import React from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AlbumList from './AlbumList.jsx';
-import Album from './Album.jsx';
+import { Card, CardHeader, CardContent, CardMedia, Typography, CardActions, Button } from "@material-ui/core";
+import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 export default class FilteredList extends React.Component {
 
@@ -92,14 +94,14 @@ export default class FilteredList extends React.Component {
     }
 
 
-    addToPlaylist = event => {
+    addToPlaylist = item => {
 
-        // get outer most parent div of the event 
-
-        console.log(event);
-
-        var item = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.children;
         console.log(item)
+
+        if (this.state.playlist.includes(item)) {
+            alert("Already in playlist!")
+            return
+        }
 
         this.setState({
             playlist: [...this.state.playlist, item], /* add item to array */
@@ -171,16 +173,26 @@ export default class FilteredList extends React.Component {
                         <AlbumList addToPlaylist={this.addToPlaylist} albums={this.sortList(this.filterList(this.props.albums))} />
                     </div>
 
-                    <div className="title"><h3>Playlist</h3>
-                    </div>
+                    <div className="title"><h3>Playlist</h3> <h5>Total songs: {this.state.aggregator}</h5></div>
+                        <div className="playlist">
+                            {this.state.playlist.map((album) =>
+                                <div className="singleAlbum">
 
-
-                    {this.state.playlist.map((album) =>
-                        <div className="singleAlbum">
-                            <Album addToPlaylist={this.props.addToPlaylist} key={album.key} name={album.name} numSongs={album.numSongs} image={album.image} likes={album.likes} genre={album.genre} mood={album.mood} />
+                                    <Card style={{ backgroundColor: '#808DFE' }}> <CardHeader className="album-title" style={{ color: 'white' }} title={album.name} />
+                                        <CardContent>
+                                            <CardMedia style={{ height: 0, paddingTop: '60%' }} image={album.image} />
+                                            <Typography component="p" style={{ textAlign: "left", color: 'white', fontSize: '14px', fontFamily: 'Helvetica Neue', padding: '1%' }}>
+                                                <FavoriteIcon />{album.likes}
+                                                <LibraryMusicIcon style={{ paddingLeft: '5%' }} />{album.numSongs} songs
+                        </Typography>
+                                        </CardContent>
+                                        <CardActions>
+                                            <Button onClick={() => this.removeFromPlaylist(album)} style={{ color: "white", fontWeight: "bold" }} > Remove from playlist </Button>
+                                        </CardActions>
+                                    </Card>
+                                </div>
+                            )}
                         </div>
-                    )}
-
                 </div>
 
             </>

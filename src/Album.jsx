@@ -9,7 +9,13 @@ export default class Album extends React.Component {
     }
 
 
+
+
     render() {
+
+        // let name = this.props.name;
+        // console.log(name)
+
 
 
         return (
@@ -24,7 +30,8 @@ export default class Album extends React.Component {
                     </CardContent>
                     <CardActions>
                         {/* how do I make addToPlaylist add this current album */}
-                        <Button onClick={this.props.addToPlaylist} style={{ color: "white", fontWeight: "bold" }} > Add to playlist </Button>
+                        {/* target={this.props.name}  */}
+                        <Button onClick={this.props.addToPlaylist} target={this.props.name} style={{ color: "white", fontWeight: "bold" }} > Add to playlist </Button>
                     </CardActions>
                 </Card>
 

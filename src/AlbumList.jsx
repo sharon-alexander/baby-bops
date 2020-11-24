@@ -1,5 +1,7 @@
 import React from 'react';
-import Album from './Album.jsx';
+import { Card, CardHeader, CardContent, CardMedia, Typography, CardActions, Button } from "@material-ui/core";
+import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 export default class AlbumList extends React.Component {
     constructor(props) {
@@ -13,7 +15,18 @@ export default class AlbumList extends React.Component {
                 <div className="albums">
                     {this.props.albums.map((album) =>
                         <div className="singleAlbum">
-                            <Album addToPlaylist={this.props.addToPlaylist} key={album.key} name={album.name} numSongs={album.numSongs} image={album.image} likes={album.likes} genre={album.genre} mood={album.mood} />
+                            <Card style={{ backgroundColor: '#808DFE' }}> <CardHeader className="album-title" style={{ color: 'white' }} title={album.name} />
+                                <CardContent>
+                                    <CardMedia style={{ height: 0, paddingTop: '60%' }} image={album.image} />
+                                    <Typography component="p" style={{ textAlign: "left", color: 'white', fontSize: '14px', fontFamily: 'Helvetica Neue', padding: '1%' }}>
+                                        <FavoriteIcon />{album.likes}
+                                        <LibraryMusicIcon style={{ paddingLeft: '5%' }} />{album.numSongs} songs
+                            </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <Button onClick={() => this.props.addToPlaylist(album)} style={{ color: "white", fontWeight: "bold" }} > Add to playlist </Button>
+                                </CardActions>
+                            </Card>
                         </div>)}
                 </div>
             </>
