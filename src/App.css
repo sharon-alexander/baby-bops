@@ -1,10 +1,50 @@
 .App {
   text-align: center;
+  background-color: #fffb97; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+  text-align: center;
+  font-family: 'Balsamiq Sans';
+  color: #C454EC;
+  padding: 0.5%;
+  font-size: 20px;
+}
+
+.albums {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 2%;
+
+}
+
+.mainContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.filters-sorting {
+  margin: 3%;
+  width: 45%;
+}
+
+.color-nav {
+  background-color: #C454EC;
+  border-radius: 50px;
+}
+
+
+.playlist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 2%;
+  width: 50%;
+}
+
+.singleAlbum {
+  padding: 2%;
+  height: 100%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,20 +53,6 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
 
 @keyframes App-logo-spin {
   from {
