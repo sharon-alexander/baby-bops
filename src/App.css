@@ -18,14 +18,7 @@
 
 }
 
-.playlist {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 2%;
-
-}
-
-.mainContainer {
+.layout-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
@@ -40,11 +33,7 @@
   background-color: #C454EC;
   border-radius: 50px;
 }
-
-.singleAlbum {
-  padding: 2%;
-  height: 100%;
-}
+=
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

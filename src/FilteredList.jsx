@@ -167,32 +167,32 @@ export default class FilteredList extends React.Component {
 
                 </div>
 
-                <div className="mainContainer">
-
-                    <div className="title"><h3> Albums for you</h3>
-                        <AlbumList addToPlaylist={this.addToPlaylist} albums={this.sortList(this.filterList(this.props.albums))} />
-                    </div>
-
+                <div className="layout-container">
+                    <div className="title"><h3> Albums for you</h3></div>
                     <div className="title"><h3>Playlist</h3> <h5>Total songs: {this.state.aggregator}</h5></div>
-                        <div className="playlist">
-                            {this.state.playlist.map((album) =>
-                                <div className="singleAlbum">
+                </div>
 
-                                    <Card style={{ backgroundColor: '#808DFE' }}> <CardHeader className="album-title" style={{ color: 'white' }} title={album.name} />
-                                        <CardContent>
-                                            <CardMedia style={{ height: 0, paddingTop: '60%' }} image={album.image} />
-                                            <Typography component="p" style={{ textAlign: "left", color: 'white', fontSize: '14px', fontFamily: 'Helvetica Neue', padding: '1%' }}>
-                                                <FavoriteIcon />{album.likes}
-                                                <LibraryMusicIcon style={{ paddingLeft: '5%' }} />{album.numSongs} songs
+                <div className="layout-container">
+
+                    <AlbumList addToPlaylist={this.addToPlaylist} albums={this.sortList(this.filterList(this.props.albums))} />
+
+                    <div className="albums">
+                        {this.state.playlist.map((album) =>
+
+                            <Card style={{ backgroundColor: '#808DFE', margin: '2%' }}> <CardHeader className="album-title" style={{ color: 'white' }} title={album.name} />
+                                <CardContent>
+                                    <CardMedia style={{ height: 0, paddingTop: '60%' }} image={album.image} />
+                                    <Typography component="p" style={{ textAlign: "left", color: 'white', fontSize: '14px', fontFamily: 'Helvetica Neue', padding: '1%' }}>
+                                        <FavoriteIcon />{album.likes}
+                                        <LibraryMusicIcon style={{ paddingLeft: '5%' }} />{album.numSongs} songs
                         </Typography>
-                                        </CardContent>
-                                        <CardActions>
-                                            <Button onClick={() => this.removeFromPlaylist(album)} style={{ color: "white", fontWeight: "bold" }} > Remove from playlist </Button>
-                                        </CardActions>
-                                    </Card>
-                                </div>
-                            )}
-                        </div>
+                                </CardContent>
+                                <CardActions>
+                                    <Button onClick={() => this.removeFromPlaylist(album)} style={{ color: "white", fontWeight: "bold" }} > Remove from playlist </Button>
+                                </CardActions>
+                            </Card>
+                        )}
+                    </div>
                 </div>
 
             </>
