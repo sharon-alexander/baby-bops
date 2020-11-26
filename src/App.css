@@ -18,6 +18,14 @@
 
 }
 
+.playlist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(6, 1fr);
+  padding: 2%;
+
+}
+
 .layout-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -33,7 +41,15 @@
   background-color: #C454EC;
   border-radius: 50px;
 }
-=
+
+#collasible-nav-dropdown {
+  font-weight: bold;
+}
+
+#filtering-navbar {
+  font-weight: bold;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -49,4 +65,34 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@media only screen and (max-width: 450px) { /* mobile size */
+
+  .albums {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 5%;
+  
+  }
+  
+  .playlist {
+    display: grid;
+    grid-template-columns:  1fr;
+    grid-template-rows: repeat(12, 1fr);
+    padding: 2%;
+  
+  }
+  
+  .layout-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .filters-sorting {
+    margin: 3%;
+    width: 90%;
+  }
+
 }

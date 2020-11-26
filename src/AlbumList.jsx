@@ -19,7 +19,7 @@ export default class AlbumList extends React.Component {
                                 <CardMedia style={{ height: 0, paddingTop: '60%' }} image={album.image} />
                                 <Typography component="p" style={{ textAlign: "left", color: 'white', fontSize: '14px', fontFamily: 'Helvetica Neue', padding: '1%' }}>
                                     <FavoriteIcon />{album.likes}
-                                    <LibraryMusicIcon style={{ paddingLeft: '5%' }} />{album.numSongs} songs
+                                    <LibraryMusicIcon fontSize="large" style={{ paddingLeft: '5%' }} />{album.numSongs} songs
                             </Typography>
                             </CardContent>
                             <CardActions>

@@ -1,0 +1,27 @@
+My application has two components: an AlbumList and a FilteredList. 
+I create a list of albums in App.js and then pass in that list as a prop to the FilteredList component that is returned in App.js.
+    
+FilteredList.jsx: this component is responsible for all of the filtering, sorting, adding and removing functionality of my application.
+This component includes the following functions, which are explained in the inline comments in FilteredList.jsx
+    - onSelectFilterGenre(event)
+    - matchesFilterGenre(item)
+    - onSelectFilterMood(event)
+    - matchesFilterMood(item)
+    - filterList(list)
+    - onSelectSortLikes(event)
+    - sortList(list)
+    - addToPlaylist(item)
+    - removeFromPlaylist(item)
+
+In FilteredList's render function, I start by creating three navbars, one for filtering by genre, one for filtering by mood, and one for sorting by number of likes. 
+I then create an AlbumList component, which takes in the album list from FilteredList's props and maps each album to a Card component from material-ui. In order to 
+ensure that the albums are displayed according to the filters chosen by the user, I use state. The state of genre and mood are initialized to "All" so that at first, 
+all of the albums are rendered. Then, if a user clicks on a specific filter or sorting property, it changes the state so that only the albums that match that filter/sorting 
+property are rendered. AlbumList is also responsible for the styling of each album. Each album also has an "Add to playlist" button which, when clicked, calls FilteredList's 
+addToPlaylist() function. Therefore, I also render a "Playlist" div which displays all of the albums that a user adds to their playlist. This is done by creating an empty 
+array in FilteredList's state and then every time addToPlaylist() is called, the added album is added to the playlist state array. Once again, I map every album in the 
+playlist array to a Card component from material-ui. Then, each album in the playlist has a "Remove from playlist" button which calls removeFromPlaylist() when clicked on, 
+which removes the album from the playlist state array. In FilteredList, I also have a "Total songs" aggregator which keeps track of how many songs a user has in their playlist. 
+I accomplish this by having an aggregator state, which is initialized to zero. Every time a user clicks "Add to playlist", the addToPlaylist() function increments the aggregator 
+state by the number of songs in that album. Every time a user clicks "Remove from playlist", the removeFromPlaylist() function decrements the aggregator state by the number of 
+songs in that album. 

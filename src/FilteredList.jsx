@@ -23,7 +23,7 @@ export default class FilteredList extends React.Component {
         }
     }
 
-    //sets the state depending on which genre was clicked on 
+    // sets the state depending on which genre was clicked on 
     onSelectFilterGenre = event => {
 
         this.setState({
@@ -45,6 +45,8 @@ export default class FilteredList extends React.Component {
 
     }
 
+
+    // sets the state depending on which mood was clicked on 
     onSelectFilterMood = event => {
 
         this.setState({
@@ -52,6 +54,8 @@ export default class FilteredList extends React.Component {
         })
     };
 
+
+    // returns true if item's mood is the same as the state or if user clicks "All"
     matchesFilterMood = item => {
 
         if (this.state.mood === "All") {
@@ -78,7 +82,7 @@ export default class FilteredList extends React.Component {
         })
     }
 
-
+    // sorts the list from "most to least" or "least to most" depending on state
     sortList = list => {
         if (this.state.sorted === "most to least") {
             return list.sort((a, b) => {
@@ -94,9 +98,8 @@ export default class FilteredList extends React.Component {
     }
 
 
+    // adds an album to the playlist 
     addToPlaylist = item => {
-
-        console.log(item)
 
         if (this.state.playlist.includes(item)) {
             alert("Already in playlist!")
@@ -109,6 +112,7 @@ export default class FilteredList extends React.Component {
         })
     }
 
+    // removes item from playlist 
     removeFromPlaylist = item => {
 
         const items = this.state.playlist.filter(album => album !== item) /* remove from array */
@@ -128,7 +132,7 @@ export default class FilteredList extends React.Component {
 
                 <div className="filters-sorting">
 
-                    <Navbar className="color-nav" variant="dark">
+                    <Navbar className="color-nav" variant="dark" style={{ color: 'white' }}>
                         <Navbar.Brand href="#genre">Genre</Navbar.Brand>
                         <Navbar.Collapse id="filtering-navbar">
                             <Nav className="mr-auto">
@@ -168,30 +172,34 @@ export default class FilteredList extends React.Component {
                 </div>
 
                 <div className="layout-container">
-                    <div className="title"><h3> Albums for you</h3></div>
-                    <div className="title"><h3>Playlist</h3> <h5>Total songs: {this.state.aggregator}</h5></div>
-                </div>
 
-                <div className="layout-container">
+                    <div>
 
-                    <AlbumList addToPlaylist={this.addToPlaylist} albums={this.sortList(this.filterList(this.props.albums))} />
+                        <div className="title"><h3 style={{ padding: '3.5px' }}> Albums for you</h3></div><br />
 
-                    <div className="albums">
-                        {this.state.playlist.map((album) =>
+                        <AlbumList addToPlaylist={this.addToPlaylist} albums={this.sortList(this.filterList(this.props.albums))} />
 
-                            <Card style={{ backgroundColor: '#808DFE', margin: '2%' }}> <CardHeader className="album-title" style={{ color: 'white' }} title={album.name} />
-                                <CardContent>
-                                    <CardMedia style={{ height: 0, paddingTop: '60%' }} image={album.image} />
-                                    <Typography component="p" style={{ textAlign: "left", color: 'white', fontSize: '14px', fontFamily: 'Helvetica Neue', padding: '1%' }}>
-                                        <FavoriteIcon />{album.likes}
-                                        <LibraryMusicIcon style={{ paddingLeft: '5%' }} />{album.numSongs} songs
+                    </div>
+                    <div>
+                        <div className="title"><h3>Playlist</h3> <h5>Total songs: {this.state.aggregator}</h5></div>
+
+                        <div className="playlist">
+                            {this.state.playlist.map((album) =>
+
+                                <Card style={{ backgroundColor: '#20B2AA', margin: '2%' }}> <CardHeader className="album-title" style={{ color: 'white' }} title={album.name} />
+                                    <CardContent>
+                                        <CardMedia style={{ height: 0, paddingTop: '60%' }} image={album.image} />
+                                        <Typography component="p" style={{ textAlign: "left", color: 'white', fontSize: '14px', fontFamily: 'Helvetica Neue', padding: '1%' }}>
+                                            <FavoriteIcon />{album.likes}
+                                            <LibraryMusicIcon fontSize="large" style={{ paddingLeft: '5%' }} />{album.numSongs} songs
                         </Typography>
-                                </CardContent>
-                                <CardActions>
-                                    <Button onClick={() => this.removeFromPlaylist(album)} style={{ color: "white", fontWeight: "bold" }} > Remove from playlist </Button>
-                                </CardActions>
-                            </Card>
-                        )}
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button onClick={() => this.removeFromPlaylist(album)} style={{ color: "white", fontWeight: "bold" }} > Remove from playlist </Button>
+                                    </CardActions>
+                                </Card>
+                            )}
+                        </div>
                     </div>
                 </div>
 

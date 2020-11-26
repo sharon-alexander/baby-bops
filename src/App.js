@@ -20,7 +20,7 @@ function App() {
   ]
   return (
     <div className="App">
-      <div className="title"> <h1 style={{fontWeight: "bold", padding: "1%"}}>BABY BOPS</h1><h3>Add your favorite albums to your playlist!</h3></div>
+      <div className="title"> <h1 style={{ fontWeight: "bold", padding: "1%" }}>BABY BOPS</h1><h3>Add your favorite albums to your playlist!</h3></div>
 
       <FilteredList albums={albumList} />
 
